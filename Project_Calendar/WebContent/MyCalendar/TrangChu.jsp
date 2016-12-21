@@ -452,8 +452,8 @@ DATE_FORMAT(NgayKetThuc,'%m/%d/%Y') AS NgayKetThuc, GioKetThuc, MoTa, TenDangNha
 </c:forEach> --%>
 
 <% request.setCharacterEncoding("UTF-8"); %>
-<c:forEach var = "row2" items = "${result2.rows}">
-<%-- <c:if test="${row.HoTen == 'Tran Trong Tri'}"> --%>
+<%-- <c:forEach var = "row2" items = "${result2.rows}">
+<c:if test="${row.HoTen == 'Tran Trong Tri'}">
 
 <sql:query dataSource ="${snapshot}" var="result3">
 select Email from NguoiDung where TenDangNhap = '${row2.TenDangNhap}';
@@ -463,8 +463,8 @@ select Email from NguoiDung where TenDangNhap = '${row2.TenDangNhap}';
  <c:import url="/Servelet_GuiMail?masukien=${row2.MaSuKien}&tensukien=${row2.TenSuKien}&giobatdau=${row2.GioBatDau}&gioketthuc=${row2.GioKetThuc}&ngaybatdau=${row2.NgayBatDau}&ngayketthuc=${row2.NgayKetThuc}&diadiem=${row2.DiaDiem}&mota=${row2.MoTa}&email=${row3.Email}&baotruoc=${row2.BaoTruoc}" />
 
 </c:forEach>
-<%-- </c:if> --%>
-</c:forEach>
+</c:if>
+</c:forEach> --%>
 	
 	<div class="container ">
 			<div class="navbar navbar-default navbar-fixed-top" role="navigation">
