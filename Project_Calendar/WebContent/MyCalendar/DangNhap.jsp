@@ -263,6 +263,7 @@
 <body>
 
 	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+	<% request.setCharacterEncoding("UTF-8"); %>
 	<%-- <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
 	url="jdbc:mysql://localhost:3306/test"
 	user="root" password="trongtri96"/> --%>
@@ -386,7 +387,7 @@ select Email from NguoiDung where TenDangNhap = '${row1.TenDangNhap}';
 					</div>
 				</div>
 			</div>
-			
+			<% request.setCharacterEncoding("UTF-8"); %>
 			<!-- Modal content sign up-->
 			<div id="myModal" class="modal fade" role="dialog">
 				  <div class="modal-dialog">

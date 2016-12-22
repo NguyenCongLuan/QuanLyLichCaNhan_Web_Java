@@ -17,6 +17,7 @@
 <body>
 	
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<% request.setCharacterEncoding("UTF-8"); %>
 	<sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
 		url="jdbc:mysql://localhost:3306/QuanLyLichCaNhan?useUnicode=yes&characterEncoding=UTF-8"
 		user="root" password="trongtri96"/>
