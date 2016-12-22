@@ -37,6 +37,15 @@ where s.TenDangNhap = '${sessionScope['loginUser']}' and sl.MaSuKien = s.MaSuKie
 	<script type="text/javascript" src="lib/jquery-1.11.1.js"></script>
 	<script type="text/javascript" src="dist/jquery.validate.js"></script>
 	<link rel="stylesheet" type="text/css" href="footer.css">
+	
+	
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	
+	
+	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
 		
 	<link href='fullcalendar/fullcalendar.css' rel='stylesheet' />
 	<link href='fullcalendar/fullcalendar.print.css' rel='stylesheet' media='print' />
@@ -185,6 +194,7 @@ where s.TenDangNhap = '${sessionScope['loginUser']}' and sl.MaSuKien = s.MaSuKie
 	    {
 	    	
 	    }
+	    
 	    /* var mang = new Array();
 	    var tam = new Array();
 	    var i = 0;
@@ -264,10 +274,32 @@ where s.TenDangNhap = '${sessionScope['loginUser']}' and sl.MaSuKien = s.MaSuKie
             },
 			allDaySlot: false,
 			selectHelper: true,
+			
 			select: function(start, end, allDay) {
-				/* var title = prompt('Event Title:');
 				
-				if (title) {
+				//$('#myModal_forgetPass').modal('show');
+				 /* $('#myModal_forgetPass').modal('show'); */
+				 //alert(start);
+				 
+				 
+				 
+				 var title = prompt('Nhập tên sự kiện:');
+				 //alert("Đã thêm sự kiện" +title);
+				if(title != '')
+					{
+					var curDt = new Date(start);
+	        		var MM = curDt.getMonth() + 1;
+	        		var dd = curDt.getDate();
+	        		var yyyy = curDt.getFullYear();
+	        		var date = yyyy + '-' + MM + '-' + dd;
+	        //alert(date);
+					 //location = "ThemNhanhSuKien.jsp?tensukien=" +title;
+					 location="ThemNhanhSuKien.jsp?tensukien="+title +"&ngaybatdau="+date;
+					}
+						
+				
+				
+				/* if (title) {
 					calendar.fullCalendar('renderEvent',
 						{
 							title: title,
@@ -277,7 +309,7 @@ where s.TenDangNhap = '${sessionScope['loginUser']}' and sl.MaSuKien = s.MaSuKie
 						},
 						true // make the event "stick"
 					);
-				} */
+				}  */
 				calendar.fullCalendar('unselect');
 			},
 			droppable: true, // this allows things to be dropped onto the calendar !!!
@@ -594,7 +626,72 @@ select Email from NguoiDung where TenDangNhap = '${row2.TenDangNhap}';
 			
         </div>
 		
-		
+		<div id="myModal_forgetPass" class="modal fade" role="dialog">
+				  <div class="modal-dialog">
+
+					
+					<div class="modal-content">
+					  <div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Quên mật khẩu</h4>
+					  </div>
+					  <div class="modal-body">
+						
+						<form class="form-horizontal" id="form-forgetPass" action="XuLy_QuenMatKhau.jsp" method="post">
+							<div class="form-group">
+								<label class="col-sm-4 control-label" for="username">Tên đăng nhập </label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="username" name="username" placeholder="Tên đăng nhập" />
+									<p style="color:red;display:none;" class="error errorUsername"></p>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-sm-4 control-label" for="email">Email</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="email" name="email" placeholder="Email" />
+									<p style="color:red;display:none;" class="error errorEmail"></p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label" for="password">Mật khẩu mới </label>
+								<div class="col-sm-5">
+									<input type="password" class="form-control" id="password" name="password" placeholder="Mật khẩu mới" />
+									 <p style="color:red;display:none;" class="error errorPassword"></p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label" for="re_password">Xác nhận mật khẩu mới </label>
+								<div class="col-sm-5">
+									<input type="password" class="form-control" id="re_password" name="re_password" placeholder="Xác nhận mật khẩu mới" />
+									 <p style="color:red;display:none;" class="error errorPassword1"></p>
+								</div>
+							</div>
+							<div class="alert alert-success hide" role = "alert">
+								
+							</div>
+							<div class="form-group">
+								<div class="col-sm-9 col-sm-offset-4">
+									<button type="submit"  class="btn btn-primary" name="xacnhan" value="Xác nhận">Xác nhận</button>
+									<button id = "btnHuy" type="submit" data-dismiss="modal"  class="btn btn-danger" name="huy" value="Hủy">Hủy</button>
+									
+								</div>
+								
+							</div>
+							
+							
+						</form>
+						
+						
+					  </div>
+					  <div class="modal-footer">
+						
+					  </div>
+					</div>
+
+				  </div>
+			
+			</div>
 			
 		
 		<footer class = "site-footer">

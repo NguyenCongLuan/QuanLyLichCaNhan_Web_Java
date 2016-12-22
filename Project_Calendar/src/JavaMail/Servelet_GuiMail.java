@@ -185,13 +185,69 @@ public class Servelet_GuiMail extends HttpServlet {
 	}
 		else
 		{
+			
 			SendSMS action = new SendSMS();
 			String message = "Tên sự kiện: " + TenSuKien + ". Ngày bắt đầu: " + NgayBatDau + ". GioBatDau: " + GioBatDau;
 			
 			action.setMessage(message);
 			action.setPhone(SoDienThoai);
-			action.send();
-			response.getWriter().println("ok");
+			
+			if(BaoTruoc.equals("5 phút"))
+			{
+				int PhutBatDauMoi = Integer.parseInt(s_PhutBatDau);
+				PhutBatDauMoi = PhutBatDauMoi - 5;
+				String PhutBatDauMoi_1 = String.valueOf(PhutBatDauMoi);
+				//response.getWriter().println(s_PhutBatDau);
+				//response.getWriter().println(PhutBatDauMoi_1);
+				
+				if(datenow.equals(re_NgayBatDau) && hournow.equals(s_GioBatDau) && minutenow.equals(PhutBatDauMoi_1))
+				{
+					action.send();
+				}
+			}
+			
+			if(BaoTruoc.equals("10 phút"))
+			{
+				int PhutBatDauMoi = Integer.parseInt(s_PhutBatDau);
+				PhutBatDauMoi = PhutBatDauMoi - 10;
+				String PhutBatDauMoi_1 = String.valueOf(PhutBatDauMoi);
+				//response.getWriter().println(s_PhutBatDau);
+				//response.getWriter().println(PhutBatDauMoi_1);
+				
+				if(datenow.equals(re_NgayBatDau) && hournow.equals(s_GioBatDau) && minutenow.equals(PhutBatDauMoi_1))
+				{
+					action.send();
+				}
+			}
+			
+			if(BaoTruoc.equals("30 phút"))
+			{
+				int PhutBatDauMoi = Integer.parseInt(s_PhutBatDau);
+				PhutBatDauMoi = PhutBatDauMoi - 30;
+				String PhutBatDauMoi_1 = String.valueOf(PhutBatDauMoi);
+				//response.getWriter().println(s_PhutBatDau);
+				//response.getWriter().println(PhutBatDauMoi_1);
+				
+				if(datenow.equals(re_NgayBatDau) && hournow.equals(s_GioBatDau) && minutenow.equals(PhutBatDauMoi_1))
+				{
+					action.send();
+				}
+			}
+			
+			if(BaoTruoc.equals("1 giờ"))
+			{
+				int GioBatDauMoi = Integer.parseInt(s_GioBatDau);
+				GioBatDauMoi = GioBatDauMoi - 1;
+				String GioBatDauMoi_1 = String.valueOf(GioBatDauMoi);
+				//response.getWriter().println(s_PhutBatDau);
+				//response.getWriter().println(PhutBatDauMoi_1);
+				
+				if(datenow.equals(re_NgayBatDau) && hournow.equals(GioBatDauMoi) && minutenow.equals(s_PhutBatDau))
+				{
+					action.send();
+				}
+			}
+			//response.getWriter().println("ok");
 		}
 		
 		

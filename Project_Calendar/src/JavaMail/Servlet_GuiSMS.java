@@ -30,9 +30,9 @@ public class Servlet_GuiSMS extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		SendSMS action = new SendSMS();
-		action.setMessage("Thấy Mane quẩy chưa ghê chưa Giáo sư ^_^");
-		action.setPhone("0944655461");
-		action.send();
+		action.setMessage("");
+		action.setPhone("");
+		//action.send();
 		response.getWriter().println("ok");
 		
 	}

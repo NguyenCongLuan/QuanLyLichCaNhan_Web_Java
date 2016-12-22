@@ -52,7 +52,7 @@ user="root" password="trongtri96"/>
 
 <sql:query dataSource ="${snapshot}" var="result1">
 select MaSuKien, TenSuKien, DiaDiem, DATE_FORMAT(NgayBatDau,'%m/%d/%Y') AS NgayBatDau, GioBatDau,
-DATE_FORMAT(NgayKetThuc,'%m/%d/%Y') AS NgayKetThuc, GioKetThuc, MoTa, TenDangNhap, BaoTruoc, SendMail from SuKien where MaSuKien = 32;
+DATE_FORMAT(NgayKetThuc,'%m/%d/%Y') AS NgayKetThuc, GioKetThuc, MoTa, TenDangNhap, BaoTruoc, SendMail from SuKien;
 </sql:query>
 
 <%-- <c:forEach var="data" items="${requestScope.title}" >
