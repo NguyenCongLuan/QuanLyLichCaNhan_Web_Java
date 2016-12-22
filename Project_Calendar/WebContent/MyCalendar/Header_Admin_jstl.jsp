@@ -24,6 +24,7 @@
 	<link rel="stylesheet" type="text/css" href="footer.css">
 </head>
 <body>
+<% request.setCharacterEncoding("UTF-8"); %>
 <form action="XuLy_TimTaiKhoan_jstl.jsp" method="post" class="navbar-form navbar-left" role="search">
 								<div class="form-group">
 									 <input type="text" name = "TaiKhoan" id = "TaiKhoan" class="form-control" placeholder="Tìm tài khoản">

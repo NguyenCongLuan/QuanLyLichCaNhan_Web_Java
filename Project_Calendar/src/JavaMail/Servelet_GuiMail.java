@@ -72,6 +72,8 @@ public class Servelet_GuiMail extends HttpServlet {
 		String BaoTruoc = request.getParameter("baotruoc");
 		String GioBatDau_1 = request.getParameter("giobatdau");
 		
+		String SoDienThoai = request.getParameter("sdt");
+		
 		//response.getWriter().println(BaoTruoc);
 		//response.getWriter().println(TenSuKien);
 		//response.getWriter().println(GioBatDau);
@@ -101,6 +103,9 @@ public class Servelet_GuiMail extends HttpServlet {
 		request.setAttribute("title", MaSuKien);
 		dispatcher.forward(request, response);*/
 		
+		if(BaoTruoc.equals("Email"))
+		{
+			
 		
 		if(BaoTruoc.equals("Không"))
 		{
@@ -176,6 +181,17 @@ public class Servelet_GuiMail extends HttpServlet {
 				g.sendMail(Email, "Lịch cá nhân", TenSuKien, NgayBatDau, GioBatDau, NgayKetThuc,
 						GioKetThuc, MoTa, DiaDiem);
 			}
+		}
+	}
+		else
+		{
+			SendSMS action = new SendSMS();
+			String message = "Tên sự kiện: " + TenSuKien + ". Ngày bắt đầu: " + NgayBatDau + ". GioBatDau: " + GioBatDau;
+			
+			action.setMessage(message);
+			action.setPhone(SoDienThoai);
+			action.send();
+			response.getWriter().println("ok");
 		}
 		
 		

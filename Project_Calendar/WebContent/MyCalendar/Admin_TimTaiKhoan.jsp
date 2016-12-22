@@ -165,7 +165,7 @@ function XacNhanThoat_1()
 </head>
 <body>
 	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-	
+	<% request.setCharacterEncoding("UTF-8"); %>
 	<div class="container ">
 			
 

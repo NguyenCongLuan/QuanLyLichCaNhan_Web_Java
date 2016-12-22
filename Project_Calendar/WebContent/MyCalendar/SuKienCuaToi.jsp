@@ -354,7 +354,7 @@ where TenDangNhap = '${sessionScope['loginUser']}';
 								<ul class = "dropdown-menu">
 									<li><a href = "DoiMatKhau.jsp"> Đổi mật khẩu </a></li>
 									<li><a href = "DoiEmail.jsp"> Đổi email</a></li>
-									<li><a href = "LienHePhanHoi.jsp"> Liên hệ</a></li>
+									
 								</ul>
 							</li>
 			

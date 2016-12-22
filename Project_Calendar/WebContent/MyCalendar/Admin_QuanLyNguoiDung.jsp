@@ -188,7 +188,7 @@ function XacNhanThoat_1()
 							</li>
                             
 							<!-- <li > <a href = "Admin_QuanLyTinNhan.jsp"> <span class="glyphicon glyphicon-book"></span>  Quản lý tin nhắn </a> </li>
-							<li> <a href = "Admin_DoiMatKhau.jsp"> <span class="glyphicon glyphicon-cog "></span> Đổi mật khẩu</a> </li> -->
+				"WebContent/MyCalendar/Admin_QuanLyNguoiDung.jsp"			<li> <a href = "Admin_DoiMatKhau.jsp"> <span class="glyphicon glyphicon-cog "></span> Đổi mật khẩu</a> </li> -->
 							
 							<!-- <form class="navbar-form navbar-left" role="search">
 								<div class="form-group">

@@ -70,7 +70,7 @@
 			messages : {
 				username : {
 					required : "Tên đăng nhập không được để trống",
-					minlength : "Tên đăng nhập phải ít nhất 6 ký tự",
+					minlength : "Tên đăng nhập phải ít nhất 8 ký tự",
 				},
 				pass : {
 					required : "Mật khẩu không được để trống",
