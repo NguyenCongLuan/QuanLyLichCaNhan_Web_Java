@@ -282,7 +282,7 @@ where s.TenDangNhap = '${sessionScope['loginUser']}' and sl.MaSuKien = s.MaSuKie
 				 //alert(start);
 				 
 				 
-				 
+				 /* 
 				 var title = prompt('Nhập tên sự kiện:');
 				 //alert("Đã thêm sự kiện" +title);
 				if(title != '')
@@ -295,7 +295,7 @@ where s.TenDangNhap = '${sessionScope['loginUser']}' and sl.MaSuKien = s.MaSuKie
 	        //alert(date);
 					 //location = "ThemNhanhSuKien.jsp?tensukien=" +title;
 					 location="ThemNhanhSuKien.jsp?tensukien="+title +"&ngaybatdau="+date;
-					}
+					} */
 						
 				
 				
@@ -468,35 +468,36 @@ url: 'XuLy_SuKien_jstl.jsp?id=<c:out value="${row1.MaSuKien}"/>'
 <body>
 	
 	
-
+	<% request.setCharacterEncoding("UTF-8"); %>
 	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 	
 	
-	<sql:query dataSource ="${snapshot}" var="result2">
+	<%-- <sql:query dataSource ="${snapshot}" var="result1">
 select MaSuKien, TenSuKien, DiaDiem, DATE_FORMAT(NgayBatDau,'%m/%d/%Y') AS NgayBatDau, GioBatDau,
-DATE_FORMAT(NgayKetThuc,'%m/%d/%Y') AS NgayKetThuc, GioKetThuc, MoTa, TenDangNhap, BaoTruoc from SuKien;
+DATE_FORMAT(NgayKetThuc,'%m/%d/%Y') AS NgayKetThuc, GioKetThuc, MoTa, TenDangNhap, BaoTruoc, SendMail from SuKien;
 </sql:query>
 
 
 
-<%-- <c:forEach var = "row1" items = "${result1.rows}">
-<c:out value="${row1.GioBatDau}"/>
-</c:forEach> --%>
-
 <% request.setCharacterEncoding("UTF-8"); %>
-<%-- <c:forEach var = "row2" items = "${result2.rows}">
-<c:if test="${row.HoTen == 'Tran Trong Tri'}">
+<c:forEach var = "row1" items = "${result1.rows}">
+<c:if test="${row1.SendMail == 0}">
 
-<sql:query dataSource ="${snapshot}" var="result3">
-select Email from NguoiDung where TenDangNhap = '${row2.TenDangNhap}';
+
+<sql:query dataSource ="${snapshot}" var="result">
+select Email, SoDienThoai from NguoiDung where TenDangNhap = '${row1.TenDangNhap}';
 </sql:query> 
-<c:forEach var = "row3" items = "${result3.rows}">
+<c:forEach var = "row" items = "${result.rows}">
 
- <c:import url="/Servelet_GuiMail?masukien=${row2.MaSuKien}&tensukien=${row2.TenSuKien}&giobatdau=${row2.GioBatDau}&gioketthuc=${row2.GioKetThuc}&ngaybatdau=${row2.NgayBatDau}&ngayketthuc=${row2.NgayKetThuc}&diadiem=${row2.DiaDiem}&mota=${row2.MoTa}&email=${row3.Email}&baotruoc=${row2.BaoTruoc}" />
+ <c:import url="/Servelet_GuiMail?masukien=${row1.MaSuKien}&tensukien=${row1.TenSuKien}&giobatdau=${row1.GioBatDau}&gioketthuc=${row1.GioKetThuc}&ngaybatdau=${row1.NgayBatDau}&ngayketthuc=${row1.NgayKetThuc}&diadiem=${row1.DiaDiem}&mota=${row1.MoTa}&email=${row.Email}&sdt=${row.SoDienThoai}&baotruoc=${row1.BaoTruoc}" />
 
 </c:forEach>
 </c:if>
 </c:forEach> --%>
+
+
+
+
 	
 	<div class="container ">
 			<div class="navbar navbar-default navbar-fixed-top" role="navigation">
