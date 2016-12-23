@@ -54,23 +54,14 @@ user="root" password="trongtri96"/>
 select MaSuKien, TenSuKien, DiaDiem, DATE_FORMAT(NgayBatDau,'%m/%d/%Y') AS NgayBatDau, GioBatDau,
 DATE_FORMAT(NgayKetThuc,'%m/%d/%Y') AS NgayKetThuc, GioKetThuc, MoTa, TenDangNhap, BaoTruoc from SuKien;
 </sql:query>
-
-
-
 <% request.setCharacterEncoding("UTF-8"); %>
 <c:forEach var = "row1" items = "${result1.rows}">
-<c:if test="${row1.SendMail == 0}">
-
-
 <sql:query dataSource ="${snapshot}" var="result">
 select Email, SoDienThoai from NguoiDung where TenDangNhap = '${row1.TenDangNhap}';
 </sql:query> 
 <c:forEach var = "row" items = "${result.rows}">
-
  <c:import url="/Servelet_GuiMail?masukien=${row1.MaSuKien}&tensukien=${row1.TenSuKien}&giobatdau=${row1.GioBatDau}&gioketthuc=${row1.GioKetThuc}&ngaybatdau=${row1.NgayBatDau}&ngayketthuc=${row1.NgayKetThuc}&diadiem=${row1.DiaDiem}&mota=${row1.MoTa}&email=${row.Email}&sdt=${row.SoDienThoai}&baotruoc=${row1.BaoTruoc}" />
-
 </c:forEach>
-</c:if>
 </c:forEach>
 
 

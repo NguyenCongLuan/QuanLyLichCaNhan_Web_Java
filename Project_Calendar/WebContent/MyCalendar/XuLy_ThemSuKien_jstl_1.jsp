@@ -20,29 +20,25 @@
 		
 		
 <c:if test="${not empty param.email}">
-	<sql:query dataSource="${snapshot}" var="selectQ">
-	        select count(*) as kount from NguoiDung
-	        where TenDangNhap='${param.email}' or HoTen='${param.email}' or Email='${param.email}'
-	        or SoDienThoai='${param.email}'
-	        
-	      </sql:query>
-	 
-	      <c:forEach items="${selectQ.rows}" var="r">
-	        <c:choose>
-	          <c:when test="${r.kount gt 0}">
-	            
-	            
-	            
-	            
-	            <sql:query dataSource ="${snapshot}" var="result0">
-select * from SuKien where TenDangNhap = '${sessionScope['loginUser']}' order by MaSuKien desc limit 1 ;
+	
+ <sql:query dataSource ="${snapshot}" var="result0">
+select * from SuKien where TenDangNhap = '${sessionScope['loginUser']}' and MaSuKien = '${param.id}';
 
 </sql:query>            
-	            <sql:query dataSource ="${snapshot}" var="result">
+ <sql:query dataSource ="${snapshot}" var="result">
 select TenDangNhap from NguoiDung 
 where TenDangNhap='${param.email}' or HoTen='${param.email}' or Email='${param.email}'
 	        or SoDienThoai='${param.email}';
 </sql:query>
+
+<c:if test="${result.rowCount <= 0}">
+             <% request.setCharacterEncoding("UTF-8"); %>
+            <c:redirect url="ThemSuKien.jsp" >
+               <c:param name="errMsg_Khach" value="User bạn mời không tồn tại! Vui lòng thử lại" />
+                <c:param name="susMsg_Username" value="${param.id}" />
+            </c:redirect>
+        </c:if> 
+
 
 <c:forEach var = "row0" items = "${result0.rows}">
 
@@ -56,8 +52,6 @@ where TenDangNhap='${param.email}' or HoTen='${param.email}' or Email='${param.e
         </sql:update>
 </c:forEach>
 </c:forEach>
-	            
-        
         <c:if test="${result2>=1}">
              <% request.setCharacterEncoding("UTF-8"); %>
  			<c:forEach var = "row0" items = "${result0.rows}">
@@ -67,46 +61,10 @@ where TenDangNhap='${param.email}' or HoTen='${param.email}' or Email='${param.e
             </c:redirect>
             </c:forEach>
         </c:if> 
-	            
-	            
-	          </c:when>
-	          <c:otherwise>
-	            <c:redirect url="ThemSuKien.jsp" >
-	              <c:param name="errMsg_Khach" value="User bạn mời không tồn tại! Vui lòng thử lại" />
-	            </c:redirect>
-	          </c:otherwise>
-	        </c:choose>
-	 
-	      </c:forEach>
 </c:if>
 
-<%-- <sql:update dataSource="${snapshot}" var="result1">
-        	
-            INSERT INTO SuKien(TenSuKien, DiaDiem, NgayBatDau, GioBatDau, NgayKetThuc, GioKetThuc,
-            BaoQua, BaoTruoc, SoLanLap, KhoangThoiGianLap, ChuKyLap, MoTa, TenDangNhap) 
-              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
-            <sql:param value="${param.tensukien}" />
-            <sql:param value="${param.diadiem}" />
-            <sql:param value="${param.ngaybatdau}" />
-            <sql:param value="${param.giobatdau}" />
-            <sql:param value="${param.ngayketthuc}" />
-            <sql:param value="${param.gioketthuc}" />
-            <sql:param value="${param.BaoQua}" />
-            <sql:param value="${param.BaoTruoc}" />
-            <sql:param value="${param.SoLanLap}" />
-            <sql:param value="${param.KhoangThoiGianLap}" />
-            <sql:param value="${param.ChuKyLap}" />
-            <sql:param value="${param.comment}" />
-            <sql:param value="${sessionScope['loginUser']}" />
-        </sql:update> --%>
+
         
-        <%-- <c:if test="${result1>=1}">
-             <% request.setCharacterEncoding("UTF-8"); %>
- 
-            <c:redirect url="ThemSuKien.jsp" >
-                <c:param name="susMsg" value="Đã thêm 1 sự kiện thành công!" />
-            </c:redirect>
-        </c:if>  --%>
              
 </body>
 </html>

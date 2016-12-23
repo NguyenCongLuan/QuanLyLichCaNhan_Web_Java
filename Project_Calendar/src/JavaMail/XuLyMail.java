@@ -33,15 +33,6 @@ public class XuLyMail {
             message.setFrom(new InternetAddress("killhunterrrr1996@gmail.com"));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
             message.setSubject(subject);
-            //message.setText(text);
-            String htmlText = ("<div style=\"color:red;\">text</div>");
-            //messageBodyPart.setContent(htmlText, "text/html");
-
-            /*String message = "<i>Greetings!</i><br>";
-            message += "<b>Wish you a nice day!</b><br>";
-            message += "<font color=red>Duke</font>";*/
-            
-            //message.setContent(text, "text/html; charset=UTF-8");
             message.setContent("<b>Tên Sự kiện: </b> " + tensukien + "<br><b>Ngày bắt đầu: </b> " + ngaybatdau + "<br><b>Giờ bắt đầu: </b> " + giobatdau +  "<br><b>Ngày kết thúc: </b> " + ngayketthuc + "<br><b>Giờ kết thúc: </b> " + gioketthuc + "<br><b>Địa điểm: </b> " + diadiem + "<br><b>Mô tả: </b> " + mota, "text/html; charset=UTF-8");
             Transport.send(message);
         } catch (MessagingException e) {
@@ -51,7 +42,8 @@ public class XuLyMail {
 }
 	public static void main(String[] args)
 	{
-		//System.out.println(sendMail("14110353@student.hcmute.edu.vn", "Lịch cá nhân", "Xin chào"));
+		/*System.out.println(sendMail("14110353@student.hcmute.edu.vn", "Lịch cá nhân", "TenSuKien", "NgayBatDau", "GioBatDau", "NgayKetThuc",
+				"GioKetThuc", "MoTa", "DiaDiem"));*/
 	}
 
 }

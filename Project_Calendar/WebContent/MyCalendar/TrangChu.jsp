@@ -282,8 +282,8 @@ where s.TenDangNhap = '${sessionScope['loginUser']}' and sl.MaSuKien = s.MaSuKie
 				 //alert(start);
 				 
 				 
-				 /* 
-				 var title = prompt('Nhập tên sự kiện:');
+				 
+				/*  var title = prompt('Nhập tên sự kiện:');
 				 //alert("Đã thêm sự kiện" +title);
 				if(title != '')
 					{
@@ -345,28 +345,17 @@ where s.TenDangNhap = '${sessionScope['loginUser']}' and sl.MaSuKien = s.MaSuKie
 			  
 			    
 			events: [
-			         
-			        
-/* <c:forEach var='event' items='${myData.events}'>
-{ title: '${event.title}', start: new Date(${event.timestamp}) },
-</c:forEach>
-null */
 
  <c:forEach var="row1" items="${result1.rows}">
-	
-		{
-			
-			
+		{	
 title: "<c:out value="${row1.TenSuKien}"/>",
 start: new Date("${row1.NgayBatDau}"),
 url: 'XuLy_SuKien_jstl.jsp?id=<c:out value="${row1.MaSuKien}"/>'	
-		},
-				
-		
+		},	
 </c:forEach>
 <c:forEach var="row" items="${result.rows}">
 {
-	/* <a onclick = "XacNhan(); return false;" href="#">Thoát</a> */
+
 			
 	title: "<c:out value="${row.TenSuKien}"/>",
 
@@ -376,56 +365,6 @@ url: 'XuLy_SuKien_jstl.jsp?id=<c:out value="${row1.MaSuKien}"/>'
 	</c:forEach>
  
 
-				{
-					/* 
-					title: function Ten(a)
-					{
-						
-					},
-					
-					start: new Date(y, m, 10)  */
-					
-					title: "${result1.rowCount}",
-					k: 10,
-					start: new Date(y, m, 10)
-				}
-				
-				/* ,
-				{
-					title: "${result1.rowCount}",
-					start: new Date(y, m, 2)
-				},
-				{
-					title: "${row1.TenSuKien}",
-					start: new Date(y, m, 8)
-				} */
-				/* ,
-				{
-					title: 'Meeting',
-					start: new Date(y, m, d, 10, 30),
-					allDay: false,
-					className: 'important'
-				},
-				{
-					title: 'Lunch',
-					start: new Date(y, m, d, 12, 0),
-					end: new Date(y, m, d, 14, 0),
-					allDay: false,
-					className: 'important'
-				},
-				{
-					title: 'Birthday Party',
-					start: new Date(y, m, d+1, 19, 0),
-					end: new Date(y, m, d+1, 22, 30),
-					allDay: false,
-				},
-				{
-					title: 'Click for Google',
-					start: new Date(y, m, 28),
-					end: new Date(y, m, 29),
-					url: 'http://google.com/',
-					className: 'success'
-				} */
 			],		
 			
 			/* </c:forEach> */
@@ -468,36 +407,35 @@ url: 'XuLy_SuKien_jstl.jsp?id=<c:out value="${row1.MaSuKien}"/>'
 <body>
 	
 	
-	<% request.setCharacterEncoding("UTF-8"); %>
+
 	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 	
 	
-	<%-- <sql:query dataSource ="${snapshot}" var="result1">
+	<sql:query dataSource ="${snapshot}" var="result2">
 select MaSuKien, TenSuKien, DiaDiem, DATE_FORMAT(NgayBatDau,'%m/%d/%Y') AS NgayBatDau, GioBatDau,
-DATE_FORMAT(NgayKetThuc,'%m/%d/%Y') AS NgayKetThuc, GioKetThuc, MoTa, TenDangNhap, BaoTruoc, SendMail from SuKien;
+DATE_FORMAT(NgayKetThuc,'%m/%d/%Y') AS NgayKetThuc, GioKetThuc, MoTa, TenDangNhap, BaoTruoc from SuKien;
 </sql:query>
 
 
 
+<%-- <c:forEach var = "row1" items = "${result1.rows}">
+<c:out value="${row1.GioBatDau}"/>
+</c:forEach> --%>
+
 <% request.setCharacterEncoding("UTF-8"); %>
-<c:forEach var = "row1" items = "${result1.rows}">
-<c:if test="${row1.SendMail == 0}">
+<%-- <c:forEach var = "row2" items = "${result2.rows}">
+<c:if test="${row.HoTen == 'Tran Trong Tri'}">
 
-
-<sql:query dataSource ="${snapshot}" var="result">
-select Email, SoDienThoai from NguoiDung where TenDangNhap = '${row1.TenDangNhap}';
+<sql:query dataSource ="${snapshot}" var="result3">
+select Email from NguoiDung where TenDangNhap = '${row2.TenDangNhap}';
 </sql:query> 
-<c:forEach var = "row" items = "${result.rows}">
+<c:forEach var = "row3" items = "${result3.rows}">
 
- <c:import url="/Servelet_GuiMail?masukien=${row1.MaSuKien}&tensukien=${row1.TenSuKien}&giobatdau=${row1.GioBatDau}&gioketthuc=${row1.GioKetThuc}&ngaybatdau=${row1.NgayBatDau}&ngayketthuc=${row1.NgayKetThuc}&diadiem=${row1.DiaDiem}&mota=${row1.MoTa}&email=${row.Email}&sdt=${row.SoDienThoai}&baotruoc=${row1.BaoTruoc}" />
+ <c:import url="/Servelet_GuiMail?masukien=${row2.MaSuKien}&tensukien=${row2.TenSuKien}&giobatdau=${row2.GioBatDau}&gioketthuc=${row2.GioKetThuc}&ngaybatdau=${row2.NgayBatDau}&ngayketthuc=${row2.NgayKetThuc}&diadiem=${row2.DiaDiem}&mota=${row2.MoTa}&email=${row3.Email}&baotruoc=${row2.BaoTruoc}" />
 
 </c:forEach>
 </c:if>
 </c:forEach> --%>
-
-
-
-
 	
 	<div class="container ">
 			<div class="navbar navbar-default navbar-fixed-top" role="navigation">

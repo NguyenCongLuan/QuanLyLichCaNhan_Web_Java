@@ -52,24 +52,17 @@ user="root" password="trongtri96"/>
 
 <sql:query dataSource ="${snapshot}" var="result1">
 select MaSuKien, TenSuKien, DiaDiem, DATE_FORMAT(NgayBatDau,'%m/%d/%Y') AS NgayBatDau, GioBatDau,
-DATE_FORMAT(NgayKetThuc,'%m/%d/%Y') AS NgayKetThuc, GioKetThuc, MoTa, TenDangNhap, BaoTruoc, SendMail from SuKien where MaSuKien = 18;
+DATE_FORMAT(NgayKetThuc,'%m/%d/%Y') AS NgayKetThuc, GioKetThuc, MoTa, TenDangNhap, BaoTruoc from SuKien;
 </sql:query>
-
-
 <% request.setCharacterEncoding("UTF-8"); %>
 <c:forEach var = "row1" items = "${result1.rows}">
-
-
-
 <sql:query dataSource ="${snapshot}" var="result">
 select Email from NguoiDung where TenDangNhap = '${row1.TenDangNhap}';
 </sql:query> 
 <c:forEach var = "row" items = "${result.rows}">
 
  <c:import url="/Servlet_GuiSMS?masukien=${row1.MaSuKien}&tensukien=${row1.TenSuKien}&giobatdau=${row1.GioBatDau}&gioketthuc=${row1.GioKetThuc}&ngaybatdau=${row1.NgayBatDau}&ngayketthuc=${row1.NgayKetThuc}&diadiem=${row1.DiaDiem}&mota=${row1.MoTa}&email=${row.Email}&baotruoc=${row1.BaoTruoc}" />
-<%-- <%= request.getAttribute("title") %> --%>
 </c:forEach>
-
 </c:forEach>
 
 

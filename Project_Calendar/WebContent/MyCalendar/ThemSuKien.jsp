@@ -346,7 +346,9 @@
 url="jdbc:mysql://localhost:3306/QuanLyLichCaNhan"
 user="root" password="trongtri96"/>
 
-
+<c:if test="${not empty param.errMsg_Khach}">
+					          <c:out value="${param.errMsg_Khach}" />
+					        	</c:if>
 
 <c:if test="${not empty param.susMsg or not empty param.susMsg_Username}">
  <% request.setCharacterEncoding("UTF-8"); %>
@@ -517,8 +519,7 @@ where s.MaSuKien = m.MaSuKien and s.MaSuKien = '${param.susMsg_Username}' and m.
 								<div class="col-sm-4">
 									<input type="text" class="form-control" name = "email" id="email" placeholder="Họ tên, Username, Email">
 									<div></div>
-									<input type="hidden" value="${param.id}" class="form-control" name = "id" id="id" placeholder="test">
-									
+									<input type="hidden" value="${row.MaSuKien}" class="form-control" name = "id" id="id" placeholder="test">
 									
 								</div>
 								<div class="col-sm-1">
@@ -531,12 +532,10 @@ where s.MaSuKien = m.MaSuKien and s.MaSuKien = '${param.susMsg_Username}' and m.
 									
 						<label>Đã thêm khách</label>
 						<c:forEach var="row1" items="${result1.rows}">		
-							
-							<%-- <div><c:out value="${row1.TenDangNhap_KhachMoi}" /></div> --%>
 							<div><c:out value="${row1.Email}" /></div>
 			   			</c:forEach>
 			   
-								</div>
+							</div>
 							</div>
 							
 							
@@ -743,9 +742,7 @@ select TenDangNhap from NguoiDung
 		</c:if> --%>
 		
 		<font color="red">
-								<c:if test="${not empty param.errMsg_Khach}">
-					            	<c:out value="${param.errMsg_Khach}" />
-					        	</c:if>
+								
 					        </font>
 		<c:if test="${empty param.susMsg and empty param.susMsg_Username}">
 		

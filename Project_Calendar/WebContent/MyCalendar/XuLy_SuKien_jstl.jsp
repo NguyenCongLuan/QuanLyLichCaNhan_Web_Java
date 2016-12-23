@@ -357,7 +357,6 @@ where MaSuKien = '${param.id}';
 select m.TenDangNhap_KhachMoi, n.Email from SuKien s, MoiKhach_SuKien m, NguoiDung n 
 where s.MaSuKien = m.MaSuKien and s.MaSuKien = '${param.id}' and m.TenDangNhap_KhachMoi = n.TenDangNhap;
 </sql:query>
-	
 	<c:forEach var="row" items="${result.rows}">	
 	
 			<div class="row">
@@ -488,16 +487,7 @@ where s.MaSuKien = m.MaSuKien and s.MaSuKien = '${param.id}' and m.TenDangNhap_K
 								</div>
 							</div>
 
-							<!-- <div class="form-group">
-								<label class="col-sm-4 control-label" for="congty">Email</label>
-								<div class="col-sm-5">
-									<input type="text" class="form-control" name = "email" id="email" placeholder="Nhập email khách">
-								</div>
-							</div> -->
-							
-							
-							
-							<div class="form-group">
+								<div class="form-group">
 								<div class="col-sm-9 col-sm-offset-4">
 									<button type="submit"  class="btn btn-primary" name="signup1" value="Thêm">Lưu</button>
 									<button id = "btnHuy" type="submit" onclick = "Huy(); return false;" class="btn btn-danger" name="huy" value="Hủy">Hủy</button>
